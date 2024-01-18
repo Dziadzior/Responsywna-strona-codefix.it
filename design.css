@@ -303,20 +303,21 @@ a.przycisk:nth-child(2)::before {
 }
 
 .zdjecie-blok {
+    margin-left: 5%;
     text-align: center;
 }
 
 .zdjecie-blok img {
-    width: 100%;
-    height: auto;
-    max-width: 350px;
+    width: 110%;
+    height: 400px;
+    max-width: 320px;
 }
 
 .liquid-obramowanie {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 5%;
+    top: -14%;
     z-index: -1;
 }
 
@@ -324,8 +325,87 @@ a.przycisk:nth-child(2)::before {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 5%;
+    top: -14%;
     z-index: -1;
-    opacity: .5;
+    opacity: .7;
     filter: blur(50px);
+}
+
+/* O mnie sekcja */
+.omnie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 2em;
+    background: var(--tlo2-kolor);
+}
+
+.omnie ,.zdjecie-blok {
+    position: relative;
+    text-align: center;
+}
+
+.omnie .zdjecie-blok img {
+    max-width: 400px;
+    height: auto;
+}
+
+.tresc-omnie span {
+    color: rgb(187, 187, 187);
+    font-size: .8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.tresc-omnie h2 {
+    color: var(--hover-kolor);
+    font-size: var(--normalny-font);
+    font-weight: 700;
+}
+
+.tresc-omnie h3 {
+    margin-bottom: .2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.tresc-omnie p {
+    margin-bottom: 1.5rem;
+    color: rgb(187, 187, 187);
+    font-weight: 400;
+}
+
+.info-omnie1,
+.info-omnie2,
+.info-omnie3 {
+    position: absolute;
+    display: block;
+    padding: 10px;
+    width: 90px;
+    height: 90px;
+    background: var(--tlo-kolor);
+    border: 1px solid var(--hover-kolor);
+    border-radius: 70% 30% 65% 33% / 20% 30% 70% 80%;
+    font-size: .5rem;
+    box-shadow: var(--neonowy-cien);
+    outline: 2px solid var(--tlo-kolor);
+    z-index: 100;
+    animation: morph 6s linear infinite;
+}
+
+@keyframes morph {
+    0%,
+    100% {
+        border-radius: 40% 70% 50% 30% / 40% 50% 60% 40%;
+    }
+    30% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+    }
+    60% {
+        border-radius: 100% 50% 50% 100% / 100% 100% 50% 50%;
+    }
+    80% {
+        border-radius: 70% 30% 65% 33% / 20% 30% 70% 80%;
+    }
 }
