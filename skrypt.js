@@ -35,3 +35,55 @@ let zmienTekst = () => {
 
 zmienTekst();
 setInterval(zmienTekst,3000);
+
+// Kolo umiejętności
+const kola = document.querySelectorAll('.kolo');
+kola.forEach(element=>{
+    var kropki = element.getAttribute("data-dots");
+    var wyrazny = element.getAttribute("data-percent");
+    var procent = Math.floor(kropki*wyrazny/100);
+    var punkty = "";
+    var obrot = 360 / kropki;
+
+    for(let i = 0; i<kropki; i++) {
+        punkty += `<div class="punkty" style="--i:${i}; --obr:${obrot}deg"></div>`;
+    }
+    element.innerHTML = punkty;
+
+    const wyraznePunkty = element.querySelectorAll('.punkty');
+    for(let i = 0; i<procent; i++) {
+        wyraznePunkty[i].classList.add('wyrazny');
+    }
+})
+
+// MixItUp portfolio sekcja
+var mixer = mixitup('.galeria-portfolio');
+
+// Aktywne menu
+let menuLista = document.querySelectorAll('header ul li a');
+let sekcja = document.querySelectorAll('section');
+
+function aktywneMenu() {
+    let dlugosc = sekcja.length;
+    while (--dlugosc && window.scrollY + 97 < sekcja[dlugosc].offsetTop){}
+    menuLista.forEach(sec => sec.classList.remove("aktywny"));
+    menuLista[dlugosc].classList.add("aktywny");
+};
+
+aktywneMenu();
+window.addEventListener("scroll", aktywneMenu);
+
+// Zablokowany navbar
+const header = document.querySelector("header");
+window.addEventListener('scroll', function() {
+    header.classList.toggle('sticky', window.scrollY > 50)
+})
+
+// Aktywowanie hamburgera
+let menuIkona = document.querySelector('#hamburger');
+let nawLista = document.querySelector('.nawigacja-lista');
+
+menuIkona.onclick = () => {
+    menuIkona.classList.toggle('fa-xmark')
+    nawLista.classList.toggle('otworz');
+}
