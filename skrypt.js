@@ -76,7 +76,7 @@ window.addEventListener("scroll", aktywneMenu);
 // Zablokowany navbar
 const header = document.querySelector("header");
 window.addEventListener('scroll', function() {
-    header.classList.toggle('sticky', window.scrollY > 50)
+    header.classList.toggle('sticky', window.scrollY > 50);
 })
 
 // Aktywowanie hamburgera
@@ -84,6 +84,33 @@ let menuIkona = document.querySelector('#hamburger');
 let nawLista = document.querySelector('.nawigacja-lista');
 
 menuIkona.onclick = () => {
-    menuIkona.classList.toggle('fa-xmark')
-    nawLista.classList.toggle('otworz');
+    menuIkona.classList.toggle("fa-x");
+    nawLista.classList.toggle("otworz");
 }
+
+window.onscroll = () => {
+    menuIkona.classList.remove("fa-x");
+    nawLista.classList.remove("otworz");
+}
+
+// Scroll do góry
+let obliczProgresScrola = () => {
+    let skrolProgres = document.getElementById('progres');
+    let wartoscProgres = document.getElementById('wartosc-progres');
+    let pos = document.documentElement.scrollTop;
+    let obliczWysokosc = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let wartoscSkrol = Math.round((pos * 100) / obliczWysokosc);
+    
+    if (pos > 100) {
+        skrolProgres.style.display = "grid";
+    } else {
+        skrolProgres.style.display = "none";
+    }
+    skrolProgres.addEventListener('click', () => {
+        document.documentElement.scrollTop = 0;
+    })
+    skrolProgres.style.background = `conic-gradient(#ff3232 ${wartoscSkrol}%, #ffffff ${wartoscSkrol}%)`;
+}
+
+window.onscroll = obliczProgresScrola;
+window.onload = obliczProgresScrola;
